@@ -1,11 +1,14 @@
 import './App.css';
 import {useState} from "react";
+import {ToDoList} from "./components/ToDoList";
+
 
 const targetURL = "http://localhost:8000/"
 
 function App() {
     const [msg, setMsg] = useState("")
     const [file, setF] = useState()
+    const [data, setData] = useState()
 
     const onFileChange = (event) => {
         setF(event.target.files[0])
@@ -22,6 +25,7 @@ function App() {
             setMsg("File successfully uploaded");
             response.json().then(data => {
                 console.log("rsp:", data);
+                setData(data.todo);
             })
         }).catch(err => {
             console.log(err);
@@ -36,6 +40,7 @@ function App() {
             <h4>{msg}</h4>
             <input onChange={onFileChange} type="file"/>
             <button disabled={!file} onClick={uploadFileData}>Upload</button>
+            <ToDoList data={data}/>
         </div>
     );
 }
