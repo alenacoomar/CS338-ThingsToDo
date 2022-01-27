@@ -1,0 +1,106 @@
+WEBVTT
+
+1
+00:00:04.890 --> 00:00:05.310
+Abby Heath: alright.
+
+2
+00:00:07.140 --> 00:00:12.240
+Abby Heath: So what do we still What else do we need to what tasks, do we need to assign.
+
+3
+00:00:15.480 --> 00:00:16.470
+Chenyu Hu: I think our.
+
+4
+00:00:17.670 --> 00:00:27.210
+Chenyu Hu: first task is to fight as the transcript from the audio by using the two API, and so we can focus on the maybe the LP.
+
+5
+00:00:28.410 --> 00:00:30.600
+Abby Heath: yeah so I can work on.
+
+6
+00:00:31.950 --> 00:00:35.100
+Abby Heath: me, and you can work on getting these audio transcripts.
+
+7
+00:00:35.160 --> 00:00:35.490
+yeah.
+
+8
+00:00:36.540 --> 00:00:43.650
+Abby Heath: um and figuring out how to you know use a back end and the zoom API to actually access them.
+
+9
+00:00:44.310 --> 00:00:51.930
+Abby Heath: yeah and ELENA can work on you know getting the nlp startup because I don't know how that works um.
+
+10
+00:00:53.100 --> 00:00:56.580
+Abby Heath: Someone should also probably get started on the front end.
+
+11
+00:00:57.630 --> 00:01:00.150
+Abby Heath: So imagine the two of us are going to need to start a back end.
+
+12
+00:01:00.300 --> 00:01:08.070
+Chenyu Hu: In order yeah I think the from that part is pretty simple, we all need Bennett function for the problem.
+
+13
+00:01:09.420 --> 00:01:10.440
+Abby Heath: I don't know.
+
+14
+00:01:11.910 --> 00:01:13.740
+Abby Heath: How much of a front end we're.
+
+15
+00:01:14.970 --> 00:01:19.950
+Abby Heath: going to need because we're not really I don't think we were really planning on having like.
+
+16
+00:01:21.090 --> 00:01:24.540
+Abby Heath: I guess, we need something that you like press a button that says okay start.
+
+17
+00:01:25.650 --> 00:01:33.150
+Abby Heath: somewhere where you can give it your information, so we need a front end someone has to build a front end where.
+
+18
+00:01:34.290 --> 00:01:50.880
+Abby Heath: You can put in either like a zoo link if we can figure out how to work with like adding a zoom link or where you can paste in the meeting ID and then do all the work, but I feel like our front end is going to be pretty small.
+
+19
+00:01:51.480 --> 00:01:51.840
+Chenyu Hu: yeah.
+
+20
+00:01:52.170 --> 00:01:56.370
+Abby Heath: I think our backend is going to be, you know where and that'll be stuff.
+
+21
+00:01:57.180 --> 00:01:58.770
+Chenyu Hu: yeah I think the key part.
+
+22
+00:02:00.300 --> 00:02:04.020
+Chenyu Hu: I think, is the hardest one for the party.
+
+23
+00:02:04.530 --> 00:02:15.120
+Abby Heath: yeah unfortunately again I I know nothing about nlp so i'm sure i'll learn as we go, so I really have no idea what kind of work goes into that.
+
+24
+00:02:16.050 --> 00:02:22.800
+Chenyu Hu: yeah I think there is something about your group has a backhand uh how's the background about the hell.
+
+25
+00:02:23.280 --> 00:02:29.850
+Abby Heath: yeah I think a good people do, which is good because I don't but i'm sure we'll figure it out okay.
+
+26
+00:02:30.000 --> 00:02:30.300
+yeah.
+
