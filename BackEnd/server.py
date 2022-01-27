@@ -1,7 +1,6 @@
-from http.server import HTTPServer, BaseHTTPRequestHandler
-
 import json
-
+from http.server import HTTPServer, BaseHTTPRequestHandler
+from analyse import analyse
 
 class Card:
     def __init__(self, name, time, location):
@@ -30,9 +29,11 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
         self.send_header("Access-Control-Allow-Origin", "*")
         self.end_headers()
 
-        testData = [vars(Card("meet with Tom", "tomorrow", "Starbuck")),
-                    vars(Card("visit museum", "next Monday", "city museum")),
-                    vars(Card("CS 333 class", "next Wednesday", "L321"))]
+        jobs = analyse(str(body))
+        testData = []
+        for job in jobs:
+            testData.append(Card(job, "", "").toJSON())
+
         response = {"receivedFile": str(body), "todo": testData}
         self.wfile.write(bytes(json.dumps(response), 'utf-8'))
         print("---RECEIVED:", body, "---")
