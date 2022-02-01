@@ -1,0 +1,9 @@
+DEBUG = True
+SQLALCHEMY_DATABASE_URI = "mysql://root:abcd1234@127.0.0.1/cs338project"
+SECRET_KEY = "123456"
+
+DOMAIN ={
+    "www":"http://10.105.163.95:5000"
+}
+DEBUG_TB_INTERCEPT_REDIRECTS = False
+AUTH_COOKIE_NAME = "cs338"

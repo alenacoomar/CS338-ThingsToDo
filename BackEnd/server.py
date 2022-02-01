@@ -38,6 +38,5 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
         self.wfile.write(bytes(json.dumps(response), 'utf-8'))
         print("---RECEIVED:", body, "---")
 
-
 httpd = HTTPServer(('localhost', 8000), SimpleHTTPRequestHandler)
 httpd.serve_forever()
