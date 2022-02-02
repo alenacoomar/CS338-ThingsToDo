@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>template</title>
+    <link rel="stylesheet" href="./plugins/bootstrap_v3/css/bootstrap.min.css">
+    <script src="./plugins/jquery.min.js"></script>
+    <script src="plugins/bootstrap_v3/js/bootstrap.min.js"></script>
+    <script src="./plugins/layer/layer.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-inverse" style="border-radius: 0 ">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="{{ buildUrl('/') }}">Things to do</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+           <li><a href="/member/team">Team</a></li>
+      </ul>
+      <form class="navbar-form navbar-left">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Search">
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+            <li><a href="transcript.html">Transcript</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+<div class="container" style="min-height: 600px;">
+    <!-- {% block content %}
+
+{% endblock %} -->
+
+<body>
+  <div class="site-wrapper">
+    <div class="site-wrapper-inner">
+
+      <div class="cover-container">
+
+        <div class="inner cover">
+          <h1 class="cover-heading">Project Name: Things To Do </h1>
+          <p class="lead">For our project, our goal is to build a web application that is able to take an audio file and
+analyze it so that the tasks can be added to a to-do list. To convert the audio file into text, we
+hope to find an API that will do so. In order to analyze the patterns in the text we plan on using
+natural language processing. Then the tasks will be outported into our web application to a user
+interface.
+</p>
+
+
+
+            <p class="lead">
+                <a href="/member/signup" class="btn btn-lg btn-default">Sign Up For Free</a>
+            </p>
+              <br>
+              <br>
+             <p class="lead">
+              <img src="https://cdn.mos.cms.futurecdn.net/25UeWUrVGmuXUjnG6Yt7rj-1200-80.jpg" width="240" height="150">
+             </p>
+              <p>
+                  Support By Zoom API
+              </p>
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+</body>
+</div>
+
+<footer class="text-center">
+    <p>Northwestern cs338</p>
+    <img src="https://pbs.twimg.com/profile_images/878641233245163520/Qj-gLi0v_400x400.jpg" class="img-rounded" width="50" height="50" >
+</footer>
+
+
+<!-- {% block js %} {% endblock %} -->
+</body>
+</html>
+   
+

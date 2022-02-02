@@ -1,0 +1,33 @@
+{% extends "common/layout.html" %}
+{% block content %}
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2">
+             <div class="panel panel-default">
+              <div class="panel-heading"><p style="font-family:'Times New Roman', Times, serif; color: purple;font-size: large">Sign Up</p></div>
+              <div class="panel-body">
+                <div class="reg_wrap">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Username</label>
+                    <input type="text" class="form-control" id="login_name" placeholder="Username" name="login_name">
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" class="form-control" id="login_pwd1" placeholder="Password" name="login_pwd1">
+                  </div>
+                   <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" class="form-control" id="login_pwd2" placeholder="enter password again" name="login_pwd2">
+                  </div>
+                  <div class="checkbox">
+                  </div>
+                  <button type="submit" class="btn btn-primary btn-lg do-reg" >Submit</button>
+                </div>
+              </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block js %}
+    <script src="{{buildStaticUrl('/js/member/Signup.js')}}"></script>
+{% endblock %}
