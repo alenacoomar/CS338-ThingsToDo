@@ -3,7 +3,7 @@ import {useState} from "react";
 import {ToDoList} from "./components/ToDoList";
 
 
-const targetURL = "http://localhost:8000/"
+const targetURL = "http://3.15.51.216:8000/"
 
 function App() {
     const [msg, setMsg] = useState("")
@@ -18,7 +18,7 @@ function App() {
         event.preventDefault();
         setMsg("")
 
-        const rsp = fetch(targetURL, {
+        const rsp = fetch( "http://3.15.51.216:8000/", {
             method: 'POST',
             body: file,
         }).then(response => {
