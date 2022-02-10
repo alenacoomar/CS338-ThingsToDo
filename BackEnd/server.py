@@ -2,14 +2,16 @@ import json
 from http.server import HTTPServer, BaseHTTPRequestHandler
 from analyse import analyse
 
+
 class Card:
-    def __init__(self, name, time, location):
+    def __init__(self, txt, name, location):
+        self.txt = txt
         self.name = name
-        self.time = time
         self.location = location
 
     def toJSON(self):
         return self.__dict__
+
 
 class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
     def do_GET(self):
@@ -29,14 +31,16 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
         self.send_header("Access-Control-Allow-Origin", "*")
         self.end_headers()
 
-        jobs = analyse(str(body))
+        jobs, assignees = analyse(str(body.decode("utf-8")))
+        print(jobs, assignees)
         testData = []
-        for job in jobs:
-            testData.append(Card(job, "", "").toJSON())
+        for i in range(len(jobs)):
+            testData.append(Card(jobs[i], assignees[i], "").toJSON())
 
-        response = {"receivedFile": str(body), "todo": testData}
+        response = { "todo": testData}
         self.wfile.write(bytes(json.dumps(response), 'utf-8'))
-        print("---RECEIVED:", body, "---")
+        # print("---RECEIVED:", body, "---")
 
-httpd = HTTPServer(('localhost', 8000), SimpleHTTPRequestHandler)
+
+httpd = HTTPServer(('0.0.0.0', 8000), SimpleHTTPRequestHandler)
 httpd.serve_forever()
