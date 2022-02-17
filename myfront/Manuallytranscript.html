@@ -46,11 +46,27 @@
 {% endblock %} -->
 <div>
     <label class="form-label" for="customFile"><h2 style="text-align: center;">Upload the transcript file here</h1></label>
-        <input type="file" class="form-control" id="customFile"/>
+        <input type="file" class="form-control" id="customFile" accept=".vtt"/>
         <br>
         <button type="button" class="btn btn-primary" onclick="uploadFileData()">Submit Transcript</button>
 </div>
-
+<script>
+  function uploadFileData() {
+    const rsp = fetch( "http://127.0.0.1:8000/", {
+            method: 'POST',
+            body: document.querySelector("#customFile").files[0],
+        }).then(response => {
+            setMsg("File successfully uploaded");
+            response.json().then(data => {
+                console.log("rsp:", data);
+                setData(data.todo);
+            })
+        }).catch(err => {
+            console.log(err);
+            setMsg("error! check log");
+        });
+  }
+</script>
 
 <h3 style="margin-top: 10%;">User Schedule</h2>
 <table class="table table-bordered" id="todolist">
