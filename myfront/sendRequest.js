@@ -10,7 +10,7 @@ function uploadFileData() {
                 "<td style=\"font-size: large;\">Name</td>" +
                 "<td style=\"font-size: large;\">Things to do</td>" +
                 "</tr>" + "<td style=\"font-size: large;\" > loading... </td>";
-        const rsp = fetch( "http://localhost:8000/", {
+        const rsp = fetch( "http://3.15.51.216:8000/", {
             method: 'POST',
             body: res,
         }).then(response => {
