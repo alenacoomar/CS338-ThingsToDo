@@ -24,7 +24,7 @@
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <!-- <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
            <li><a href="/member/team">Team</a></li>
       </ul>
@@ -37,17 +37,24 @@
       <ul class="nav navbar-nav navbar-right">
             <li><a href="transcript.html">Transcript</a></li>
       </ul>
-    </div><!-- /.navbar-collapse -->
+    </div>/.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+<div>
+</div>
 <div class="container" style="min-height: 600px;">
-  <h1 class="cover-heading" style="color: gray;">Project Name: Things To Do </h1>
+  <h1 class="cover-heading" style="color: gray;">Welcome, Team! </h1>
+  <div class="row">
+  
   <div>
-    <div class="jumbotron" style="width: 500px; margin-top: 5%;">
+
+  <div class="col-sm-3">
+   
+    <div class="jumbotron" style="width: 370px; margin-top: 5%;">
       <h3 style="margin-top: -5%;">Upload Your Transcript</h3>
       <div style="margin-top: 5%;">
-        <button type="button" class="btn btn-default btn-lg active" style="width: 150px; height: 75px;" id="file" name="file">By File</button>
-        <button type="button" class="btn btn-default btn-lg active" style="width: 150px; height: 75px; margin-left: 5%;" id="zoom" name="zoom">By Zoom Id</button>
+        <button type="button" class="btn btn-default btn-lg active" style="width: 120px; height: 75px;" id="file" name="file">By File</button>
+        <button type="button" class="btn btn-default btn-lg active" style="width: 120px; height: 75px; margin-left: 2%;" id="zoom" name="zoom">By Zoom Id</button>
       </div>
     </div>
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -66,25 +73,38 @@
                   </div>
               </div>
           </div>
-          <h3 style="margin-top: 20px;">User Schedule</h2>
-            <table class="table table-bordered" id="todolist">
+    
+
+         </div>
+         <div class="col-sm-2"></div>
+         <div class="col-sm-6">
+          <h3 style="margin-top: 20px;">To Do List</h2>
+            <table class="table" id="todolist">
                 <tr>
                     <td style="font-size: large;">Name</td>
                     <td style="font-size: large;">Things to do</td>
                 </tr>
             </table>
-    <div>
-      <h3>
-          Send Schedule to the email address
-      </h3>
-      <form>
-    <div class="form-group">
-      <label for="exampleInputEmail1">Email address</label>
-      <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+          </div>
+
+            
+
     </div>
-    <button type="submit" class="btn btn-primary">Send Email</button>
-    </form>
-    </div>
+  </div>
+  <div>
+    <h3>
+        Send Schedule to the email address
+    </h3>
+    <form>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+  </div>
+  <button type="submit" class="btn btn-primary">Send Email</button>
+  </form>
+  </div>
+</div>
+            
   </div>
 </div>
 
