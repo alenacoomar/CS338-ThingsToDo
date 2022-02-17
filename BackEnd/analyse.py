@@ -46,8 +46,11 @@ def analyse(transcript):
     tasks_to_delete = []
     assignees_to_delete = []
     for task in all_tasks:
-        if ('will do that' in task) or ('can do that' in task) or ('will do it' in task) or ('can do it' in task):
-            all_tasks[i - 1] = all_tasks[i - 1].replace(all_assignees[i - 1], all_assignees[i])
+        if ('will do that' in str(task)) or ('can do that' in str(task)) or ('will do it' in str(task)) or (
+                'can do it' in str(task)):
+            curr_task = str(all_tasks[i - 1])
+            curr_task = curr_task.replace('[', '').replace(']', '').replace('\'', '').replace('\"', '')
+            all_tasks[i - 1] = [curr_task.replace(str(all_assignees[i - 1]), str(all_assignees[i]))]
             tasks_to_delete.append(i)
             assignees_to_delete.append(i - 1)
         i += 1
@@ -69,7 +72,7 @@ def analyse(transcript):
 def task_finder(nlp, transcript):
     # Split transcript into sentences
     sentences = transcript.split('.')
-    all_sentences = [i for i in sentences if i] # removes empty strings
+    all_sentences = [i for i in sentences if i]  # removes empty strings
 
     # Go through each sentence and check for task patterns
     # Save these sentences into new array as task_sentences
@@ -79,30 +82,51 @@ def task_finder(nlp, transcript):
         processed = nlp(s)
         is_task = 0
         i = 0
-        assigned_to = "Team" # Default to entire team assigned to task
+        assigned_to = "Team"  # Default to entire team assigned to task
 
         for token in processed:
             # if proper-noun/pronoun + 'will/should'
             if (token.pos_ == 'PROPN' or token.pos_ == 'PRON') and (token.text != 'It'):
-                if(i+1 < len(s.split())):
-                    next_word = processed[i+1].text
+                if (i + 1 < len(s.split())):
+                    next_word = processed[i + 1].text
                     if (next_word == 'will') or (next_word == 'should'):
                         is_task = 1
-                        if (token.pos == 'PROPN') or (token.text == 'I') or (token.text == 'you'):
+                        if (token.pos_ == 'PROPN') or (token.text == 'I') or (token.text == 'you'):
                             assigned_to = token.text
 
             # if '(need, needs) to' in sentence
             if (is_task == 0) and ((token.text == 'need') or (token.text == 'needs')):
-                if(i+1 < len(s.split())):
-                    next_word = processed[i+1].text
+                if (i + 1 < len(s.split())):
+                    next_word = processed[i + 1].text
                     if (next_word == 'to'):
                         is_task = 1
-                        if processed[i-1].pos_ == 'PROPN':
-                            assigned_to = processed[i-1].text
-                        elif (processed[i-1].text == 'I') or (processed[i-1].text == 'you'):
-                            assigned_to = processed[i-1].text
+                        if processed[i - 1].pos_ == 'PROPN':
+                            assigned_to = processed[i - 1].text
+                        elif (processed[i - 1].text == 'I') or (processed[i - 1].text == 'you'):
+                            assigned_to = processed[i - 1].text
 
             i = i + 1
+
+        # add reassignments to task list
+        if (is_task == 0):
+            if ('can do that' in s) or ('can do it' in s):
+                is_task = 1
+                list_of_s = s.split()
+                i = list_of_s.index('can')
+                if (processed[i - 1].pos_ == 'PROPN') and (i > 1):
+                    if processed[i - 2].pos_ == 'PROPN':
+                        assigned_to = list_of_s[i - 2] + ' ' + list_of_s[i - 1]
+                else:
+                    assigned_to = list_of_s[i - 1]
+            elif ('will do that' in s) or ('will do it' in s):
+                is_task = 1
+                list_of_s = s.split()
+                i = list_of_s.index('will')
+                if (processed[i - 1].pos_ == 'PROPN') and (i > 1):
+                    if processed[i - 2].pos_ == 'PROPN':
+                        assigned_to = list_of_s[i - 2] + ' ' + list_of_s[i - 1]
+                else:
+                    assigned_to = list_of_s[i - 1]
 
         if is_task == 1:
             task_sentences.append(s)
