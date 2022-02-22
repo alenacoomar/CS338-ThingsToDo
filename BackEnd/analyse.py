@@ -35,7 +35,7 @@ def analyse(transcript):
                 if a:  # not empty
                     if a == 'I':  # "I" --> current speaker
                         all_assignees.append(curr_speaker)
-                    elif a == 'you':  # "You" --> previous speaker
+                    elif a == 'you' or a == 'You':  # "You" --> previous speaker
                         all_assignees.append(prev_speaker)
                     else:
                         all_assignees.append(a)
@@ -53,9 +53,15 @@ def analyse(transcript):
             all_tasks[i - 1] = [curr_task.replace(str(all_assignees[i - 1]), str(all_assignees[i]))]
             tasks_to_delete.append(i)
             assignees_to_delete.append(i - 1)
+        # task that have already been completed -- NEW !!!
+        elif ('already did that' in str(task)) or ('completed that' in str(task)) or ('already done' in str(task)):
+            tasks_to_delete.append(i)
+            tasks_to_delete.append(i - 1)
+            assignees_to_delete.append(i)
+            assignees_to_delete.append(i - 1)
         i += 1
 
-    # take out indicies that have reassignment
+    # take out indicies that have reassignment/already done
     final_tasks = []
     final_assignees = []
     for i in range(len(all_tasks)):
@@ -107,7 +113,7 @@ def task_finder(nlp, transcript):
 
             i = i + 1
 
-        # add reassignments to task list
+        # add reassignments/already completed to task list
         if (is_task == 0):
             if ('can do that' in s) or ('can do it' in s):
                 is_task = 1
@@ -127,6 +133,9 @@ def task_finder(nlp, transcript):
                         assigned_to = list_of_s[i - 2] + ' ' + list_of_s[i - 1]
                 else:
                     assigned_to = list_of_s[i - 1]
+            # add that task is completed to task list -- NEW !!
+            elif ('already did that' in s) or ('completed that' in s) or ('already done' in s):
+                is_task = 1
 
         if is_task == 1:
             task_sentences.append(s)
