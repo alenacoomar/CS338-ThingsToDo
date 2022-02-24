@@ -48,11 +48,12 @@ class Transcript():
         """Gets the transcript using the parameters the instance has access to."""
 
         self.conn = http.client.HTTPSConnection("zoom.us")
-        got_file = False
+        #got_file = False
+        content = None
         if None in [self.client_key, self.client_secret, self.code] and self.access_token is None:
             print("Zoom OAuth token needed to get transcript.")
             print(self.code)
-            return got_file
+            return content
 
         if self.access_token is None:
             self.access_token = self._GetAccessToken()
@@ -63,7 +64,7 @@ class Transcript():
             print("Bad Access Token")
             if None in [self.client_key, self.client_secret, self.code]:
                 print("client_key, client_secret, and code needed to create access token.")
-                return got_file
+                return content
             self.access_token = self._GetAccessToken()
             download_url = self._GetDownloadUrl()
         
@@ -71,10 +72,11 @@ class Transcript():
             print("Meeting Not Found.")
         else:
             transcript = requests.get(download_url, allow_redirects=True)
-            open("{meeting_id}_audio_transcript.vtt".format(meeting_id=self.meeting_id), 'wb').write(transcript.content)
-            got_file = True
+            #open("{meeting_id}_audio_transcript.vtt".format(meeting_id=self.meeting_id), 'wb').write(transcript.content)
+            #got_file = True
+            content = transcript.content
 
-        return got_file
+        return content
 
     def _GetAccessToken(self):
         """Gets an access token using client_key, client_secret, and code."""

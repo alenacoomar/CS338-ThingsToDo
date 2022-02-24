@@ -29,13 +29,14 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
             self.wfile.write("{a}".format(a=id).encode("utf-8"))
         elif self.path.startswith('/?code='):
             transcript = Transcript(id, client_key="mBr4CQ7wR8KlxZcISGMsyA", client_secret="533Kdl2aa0w2Kvbb9Z5QcIizWLn3VJWQ", code=self.path[7:]).GetTranscript()
-            if transcript == False:
+            print(transcript)
+            if transcript == None:
                 self.send_response(404)
                 self.end_headers()
                 self.wfile.write(b'Error - Meeting transcript not found. Either the meeting ID is invalid, or the audio transcript is not done transcribing.')
             else:
                 self.send_response(303)
-                self.send_header('Location', 'http://127.0.0.1:5500/myfront/transcript.html')
+                self.send_header('Location', 'http://127.0.0.1:5500/myfront/newpage.html')
                 self.end_headers()
                 #self.wfile.write("{a}, {b}".format(a=transcript, b=self.path[7:]).encode("utf-8"))
         else:

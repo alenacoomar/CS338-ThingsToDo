@@ -78,12 +78,20 @@
           Send Schedule to the email address
       </h3>
       <form>
-    <div class="form-group">
-      <label for="exampleInputEmail1">Email address</label>
-      <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
-    </div>
-    <button type="submit" class="btn btn-primary">Send Email</button>
-    </form>
+        <div class="form-group">
+          <label for="exampleInputEmail1">Email address</label>
+          <input type="email" class="form-control" id="exampleInputEmail1" placeholder="john@gmail.com, jane@yahoo.com">
+        </div>
+        <button class="btn btn-primary" onclick="submitMail()">Send Email</button>
+      </form>
+      <script>
+        function submitMail() {
+          email = document.getElementById('exampleInputEmail1').value;
+          tasks = "hello this is a test"
+          url = `mailto:${email}?subject=Tasks&body=${tasks}`;
+          window.open(url);
+}
+      </script>
     </div>
   </div>
 </div>
