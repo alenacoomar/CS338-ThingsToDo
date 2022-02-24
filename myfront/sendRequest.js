@@ -1,3 +1,5 @@
+let meetingID = ""
+
 function uploadFileData() {
     let file = document.getElementById("customFile").files[0];
     const reader = new FileReader();
@@ -30,9 +32,18 @@ function uploadFileData() {
         });
     };
 }
+
 function Submit() {
-    meeting = document.querySelector("#exampleInputPassword1").value;
-    window.open(`http://localhost:8000/meetingid/${meeting}`, "_blank");
+    meetingID = document.getElementById("exampleInputPassword1").value;
+    window.open(`http://localhost:8000/meetingid/${meetingID}`, "_blank");
+}
+
+function submitMail() {
+    const email = document.getElementById('exampleInputEmail1').value;
+    const tasks = "hello this is a test"
+    const subject = `Tasks for meeting ${meetingID}`
+    const url = `mailto:${email}?subject=${subject}&body=${tasks}`;
+    window.open(url);
 }
 
 $(document).ready(function(){
@@ -48,7 +59,6 @@ $(document).ready(function(){
     
     });
     $("#zoom").click(function(){
-        console.log("click")
         $("#myModalLabel").text("upload the transcript by searching your meeting Id");
         $('#myModal').modal();
         let str = '<h2>Search for the meeting</h2><div><form>\

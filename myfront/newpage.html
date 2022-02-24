@@ -66,7 +66,7 @@
                   </div>
               </div>
           </div>
-          <h3 style="margin-top: 20px;">User Schedule</h2>
+          <h3 style="margin-top: 20px;">User Schedule</h3>
             <table class="table table-bordered" id="todolist">
                 <tr>
                     <td style="font-size: large;">Name</td>
@@ -84,14 +84,6 @@
         </div>
         <button class="btn btn-primary" onclick="submitMail()">Send Email</button>
       </form>
-      <script>
-        function submitMail() {
-          email = document.getElementById('exampleInputEmail1').value;
-          tasks = "hello this is a test"
-          url = `mailto:${email}?subject=Tasks&body=${tasks}`;
-          window.open(url);
-}
-      </script>
     </div>
   </div>
 </div>
