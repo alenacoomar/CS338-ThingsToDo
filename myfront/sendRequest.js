@@ -1,4 +1,5 @@
 let meetingID = ""
+let returnTasks = []
 
 function uploadFileData() {
     let file = document.getElementById("customFile").files[0];
@@ -23,6 +24,8 @@ function uploadFileData() {
                         str += "<td>" + data.todo[i].name + "</td>";
                         str += "<td>" + data.todo[i].txt[0] + "</td>";
                     str += "</tr>";
+
+                    returnTasks.push([data.todo[i].name, data.todo[i].txt[0]])
                 }
                 table.innerHTML = "<tr>" + "<td style=\"font-size: large;\">Name</td>" +
                     "<td style=\"font-size: large;\">Things to do</td>" + "</tr>" +str;
@@ -40,7 +43,10 @@ function Submit() {
 
 function submitMail() {
     const email = document.getElementById('exampleInputEmail1').value;
-    const tasks = "hello this is a test"
+    let tasks = ""
+    Object.values(returnTasks).map((value) => {
+        tasks += value[0] + ": " + value[1] + "%0D%0A"
+    })
     const subject = `Tasks for meeting ${meetingID}`
     const url = `mailto:${email}?subject=${subject}&body=${tasks}`;
     window.open(url);
@@ -48,7 +54,6 @@ function submitMail() {
 
 $(document).ready(function(){
     $("#file").click(function () {
-        console.log("click")
         $("#myModalLabel").text("upload the transcript manually");
         $('#myModal').modal();
         document.getElementById("modal-body").innerHTML = '<div><label class="form-label" for="customFile">\
@@ -56,7 +61,6 @@ $(document).ready(function(){
         <input type="file" class="form-control" id="customFile" accept=".vtt"/><br>'
         document.getElementById("modal-footer").innerHTML = '<button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>close</button>\
         <button type="button" id="btn_submit" class="btn btn-primary" data-dismiss="modal" onclick="uploadFileData()"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true" ></span>Submit</button>';
-    
     });
     $("#zoom").click(function(){
         $("#myModalLabel").text("upload the transcript by searching your meeting Id");
