@@ -2,27 +2,27 @@ WEBVTT
 
 1
 00:00:04.890 --> 00:00:05.310
-Abby Heath: alright.
+Abby Heath: Welcome to the meeting everyone.
 
 2
 00:00:07.140 --> 00:00:12.240
-Abby Heath: So what do we still What else do we need to what tasks, do we need to assign.
+Alena Coomar: So what tasks do we need to assign?
 
 3
 00:00:15.480 --> 00:00:16.470
-Chenyu Hu: 
+Dong Yang: Let me take a look.
 
 4
 00:00:17.670 --> 00:00:27.210
-Chenyu Hu: first task is to fight as the transcript from the audio by using the two API, and so we can focus on the maybe the LP.
+Dong Yang: We first need to find the transcript from the audio with the API.
 
 5
 00:00:28.410 --> 00:00:30.600
-Abby Heath: yeah so I can work on.
+Abby Heath: What else should we work on?
 
 6
 00:00:31.950 --> 00:00:35.100
-Abby Heath: I think Alena will paint the wall.
+Abby Heath: Iris will make the UI.
 
 7
 00:00:35.160 --> 00:00:35.490
@@ -30,11 +30,11 @@ Abby Heath: I will do it.
 
 8
 00:00:36.540 --> 00:00:43.650
-Abby Heath: um and figuring out how to you know use a back end and the zoom API to actually access them.
+Chenyu Hu: We need to build the backend too.
 
 9
 00:00:44.310 --> 00:00:51.930
-Abby Heath: yeah and ELENA can work on you know getting the nlp startup because I don't know how that works um.
+Abby Heath: You can do that.
 
 10
 00:00:53.100 --> 00:00:56.580
@@ -82,7 +82,7 @@ Abby Heath: I will set up the table so that we know it is clean data.
 
 21
 00:01:57.180 --> 00:01:58.770
-Chenyu Hu: yeah I think the key part.
+Chenyu Hu: Oh, that's already done.
 
 22
 00:02:00.300 --> 00:02:04.020
