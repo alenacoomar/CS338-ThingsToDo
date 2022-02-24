@@ -29,6 +29,7 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
             self.wfile.write("{a}".format(a=id).encode("utf-8"))
         elif self.path.startswith('/?code='):
             transcript = Transcript(id, client_key="mBr4CQ7wR8KlxZcISGMsyA", client_secret="533Kdl2aa0w2Kvbb9Z5QcIizWLn3VJWQ", code=self.path[7:]).GetTranscript()
+            print(id)
             print(transcript)
             if transcript == None:
                 self.send_response(404)
