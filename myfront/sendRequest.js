@@ -1,20 +1,12 @@
-function sendMail() {
-    Email.send({
-        SecureToken : "<your generated token>",
-        To : 'recipient@example.com',
-        From : "sender@example.com",
-        Subject : "Test Email",
-        Body : "<html><h2>Header</h2><strong>Bold text</strong><br></br><em>Italic</em></html>",
-        Attachments : [
-        {
-            name : "smtp.png",
-            path : "https://…/smtp.png"
-        }]
-        }).then(
-              message => alert(message)
-        );
-}
+let meetingID = ""
 
+function submitMail() {
+    const email = document.getElementById('exampleInputEmail1').value;
+    const tasks = "hello this is a test"
+    const subject = `Tasks for meeting ${meetingID}`
+    const url = `mailto:${email}?subject=${subject}&body=${tasks}`;
+    window.open(url);
+}
 
 function uploadFileData() {
     let file = document.getElementById("customFile").files[0];
@@ -91,7 +83,6 @@ $(document).ready(function(){
     
     });
     $("#zoom").click(function(){
-        console.log("click")
         $("#myModalLabel").text("upload the transcript by searching your meeting Id");
         $('#myModal').modal();
         let str = '<h2>Search for the meeting</h2><div><form>\
