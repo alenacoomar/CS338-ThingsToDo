@@ -30,9 +30,15 @@ function uploadFileData() {
         });
     };
 }
+
 function Submit() {
     meeting = document.querySelector("#exampleInputPassword1").value;
-    window.open(`http://localhost:8000/meetingid/${meeting}`, "_blank");
+    //window.open(`http://localhost:8000/meetingid/${meeting}`, "_blank");
+    window.location.href = "https://zoom.us/oauth/authorize?response_type=code&client_id=mBr4CQ7wR8KlxZcISGMsyA&redirect_uri=http://localhost:8000";
+    fetch(`http://localhost:8000/transcript/${meeting}`)
+        .then(res => {
+            console.log(res)
+        })
 }
 
 $(document).ready(function(){
@@ -62,5 +68,3 @@ $(document).ready(function(){
     });
 }
 );
-
-

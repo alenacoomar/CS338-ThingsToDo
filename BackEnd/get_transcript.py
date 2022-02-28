@@ -19,12 +19,12 @@ class Code():
     def GetCode(self):
         """Gets the authorization code"""
         self.conn = http.client.HTTPSConnection("zoom.us")
-        self.conn.request("GET", "/oauth/authorize?response_type=code&client_id={client_id}&redirect_uri=localhost:8000".format(client_id=self.client_key))
-        """res = self.conn.getresponse()
+        self.conn.request("GET", "/oauth/authorize?response_type=code&client_id={client_id}&redirect_uri=http://localhost:8000".format(client_id=self.client_key))
+        res = self.conn.getresponse()
         print(res.read())
-        response = json.loads(res.read())
+        response = json.loads(res.read().decode("utf-8"))
         print(response)
-        return response"""
+        return response
 
 class Transcript():
     """Use the API token's key, secret, and code to get transcript file from cloud recording of meeting with id meeting_id."""
@@ -52,8 +52,10 @@ class Transcript():
         content = None
         if None in [self.client_key, self.client_secret, self.code] and self.access_token is None:
             print("Zoom OAuth token needed to get transcript.")
-            print(self.code)
             return content
+
+        if self.code is None:
+            self.code = self._GetCode()
 
         if self.access_token is None:
             self.access_token = self._GetAccessToken()
@@ -75,8 +77,15 @@ class Transcript():
             #open("{meeting_id}_audio_transcript.vtt".format(meeting_id=self.meeting_id), 'wb').write(transcript.content)
             #got_file = True
             content = transcript.content
-
+        
         return content
+
+    # def _GetCode(self):
+    #     #https://zoom.us/oauth/authorize?response_type=code&client_id=mBr4CQ7wR8KlxZcISGMsyA&redirect_uri=http://localhost:8000'
+    #     self.conn.request("GET", "/oauth/authorize?response_type=code&client_id=mBr4CQ7wR8KlxZcISGMsyA&redirect_uri=http://localhost:8000")
+    #     res = self.conn.getresponse()
+    #     response = json.loads(res.read().decode("utf-8"))
+    #     print(response)
 
     def _GetAccessToken(self):
         """Gets an access token using client_key, client_secret, and code."""
@@ -94,7 +103,6 @@ class Transcript():
         self.conn.request("POST", request_endpoint, headers=access_token_headers)
         res = self.conn.getresponse()
         response = json.loads(res.read().decode("utf-8"))
-        print(response)
 
         try:
             return response["access_token"]
@@ -117,7 +125,6 @@ class Transcript():
             response = json.loads(data)
         except:
             print("Bad Response to access recordings.")
-            print(data)
         
         # Download the transcript if it exists
         download_url = None
