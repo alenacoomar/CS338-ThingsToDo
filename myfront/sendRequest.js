@@ -1,3 +1,21 @@
+function sendMail() {
+    Email.send({
+        SecureToken : "<your generated token>",
+        To : 'recipient@example.com',
+        From : "sender@example.com",
+        Subject : "Test Email",
+        Body : "<html><h2>Header</h2><strong>Bold text</strong><br></br><em>Italic</em></html>",
+        Attachments : [
+        {
+            name : "smtp.png",
+            path : "https://…/smtp.png"
+        }]
+        }).then(
+              message => alert(message)
+        );
+}
+
+
 function uploadFileData() {
     let file = document.getElementById("customFile").files[0];
     const reader = new FileReader();
@@ -49,15 +67,7 @@ $(document).ready(function(){
         let str = '<h2>Search for the meeting</h2><div><form><div class="form-group">\
                   <label for="exampleInputEmail1">Client Id</label>\
                   <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">\
-                </div>\
-                <div class="form-group">\
-                  <label for="exampleInputPassword1">Client Secret</label>\
-                  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">\
-                </div>\
-                <div class="form-group">\
-                    <label for="exampleInputPassword1">Meeting Id</label>\
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">\
-                  </div>';
+                </div>';
         document.getElementById("modal-body").innerHTML = str;
         document.getElementById("modal-footer").innerHTML = '<button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>close</button>\
         <button type="button" id="btn_submit" class="btn btn-primary" data-dismiss="modal" onclick=""><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true" ></span>Submit</button>';

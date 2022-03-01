@@ -8,46 +8,17 @@
     <script src="plugins/bootstrap_v3/js/bootstrap.min.js"></script>
     <script src="./plugins/layer/layer.js"></script>
     <script src="./sendRequest.js"></script>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
 </head>
 <body>
-<nav class="navbar navbar-inverse" style="border-radius: 0 ">
-  <div class="container-fluid">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="{{ buildUrl('/') }}">Things to do</a>
-    </div>
-
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-           <li><a href="/member/team">Team</a></li>
-      </ul>
-      <form class="navbar-form navbar-left">
-        <div class="form-group">
-          <input type="text" class="form-control" placeholder="Search">
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-      </form>
-      <ul class="nav navbar-nav navbar-right">
-            <li><a href="transcript.html">Transcript</a></li>
-      </ul>
-    </div><!-- /.navbar-collapse -->
-  </div><!-- /.container-fluid -->
-</nav>
 <div class="container" style="min-height: 600px;">
-  <h1 class="cover-heading" style="color: gray;">Project Name: Things To Do </h1>
+  <h1 class="cover-heading" style="color: gray;">Things To Do </h1>
   <div>
     <div class="jumbotron" style="width: 500px; margin-top: 5%;">
       <h3 style="margin-top: -5%;">Upload Your Transcript</h3>
       <div style="margin-top: 5%;">
         <button type="button" class="btn btn-default btn-lg active" style="width: 150px; height: 75px;" id="file" name="file">By File</button>
-        <button type="button" class="btn btn-default btn-lg active" style="width: 150px; height: 75px; margin-left: 5%;" id="zoom" name="zoom">By Zoom Id</button>
+        <button type="button" class="btn btn-default btn-lg active" style="width: 150px; height: 75px; margin-left: 5%;" id="zoom" name="zoom">Zoom ID</button>
       </div>
     </div>
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -66,7 +37,7 @@
                   </div>
               </div>
           </div>
-          <h3 style="margin-top: 20px;">User Schedule</h2>
+          <h3 style="margin-top: 20px;">Task List</h2>
             <table class="table table-bordered" id="todolist">
                 <tr>
                     <td style="font-size: large;">Name</td>
@@ -75,14 +46,14 @@
             </table>
     <div>
       <h3>
-          Send Schedule to the email address
+          Share/Send Email
       </h3>
       <form>
     <div class="form-group">
-      <label for="exampleInputEmail1">Email address</label>
-      <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+      <!-- <label for="exampleInputEmail1">Email address</label> -->
+      <!-- <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email"> -->
     </div>
-    <button type="submit" class="btn btn-primary">Send Email</button>
+    <button type="submit" class="btn btn-primary" onclick="sendMail()">Send Email</button>
     </form>
     </div>
   </div>
