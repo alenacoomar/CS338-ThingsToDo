@@ -1,3 +1,21 @@
+function sendMail() {
+    Email.send({
+        SecureToken : "<your generated token>",
+        To : 'recipient@example.com',
+        From : "sender@example.com",
+        Subject : "Test Email",
+        Body : "<html><h2>Header</h2><strong>Bold text</strong><br></br><em>Italic</em></html>",
+        Attachments : [
+        {
+            name : "smtp.png",
+            path : "https://…/smtp.png"
+        }]
+        }).then(
+              message => alert(message)
+        );
+}
+
+
 function uploadFileData() {
     let file = document.getElementById("customFile").files[0];
     const reader = new FileReader();
