@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>template</title>
+    <title>Task Finder</title>
     <link rel="stylesheet" href="./plugins/bootstrap_v3/css/bootstrap.min.css">
     <script src="./plugins/jquery.min.js"></script>
     <script src="plugins/bootstrap_v3/js/bootstrap.min.js"></script>
@@ -11,18 +11,22 @@
     <script src="https://smtpjs.com/v3/smtp.js"></script>
 </head>
 <body>
-<<<<<<< HEAD
-<nav class="navbar navbar-inverse" style="border-radius: 0 ">
+<!-- <nav class="navbar navbar-inverse" style="border-radius: 0 "> -->
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+    <!-- <div class="navbar-header" > -->
+      <!-- <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
         <span class="sr-only">Toggle navigation</span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="{{ buildUrl('/') }}">Things to do</a>
+      </button> -->
+      <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="{{ buildUrl('/') }}"> 
+          <img src="icon.png" class="img-rounded" width="50" height="50" >
+          Task Finder</a>
+      </nav>
+       
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -48,10 +52,6 @@
   <h1 class="cover-heading" style="color: gray;">Welcome, Team! </h1>
   <div class="row">
   
-=======
-<div class="container" style="min-height: 600px;">
-  <h1 class="cover-heading" style="color: gray;">Things To Do </h1>
->>>>>>> 346cde6e121cc22528c8c7830be553247224a8f9
   <div>
 
   <div class="col-sm-3">
@@ -59,13 +59,8 @@
     <div class="jumbotron" style="width: 370px; margin-top: 5%;">
       <h3 style="margin-top: -5%;">Upload Your Transcript</h3>
       <div style="margin-top: 5%;">
-<<<<<<< HEAD
         <button type="button" class="btn btn-default btn-lg active" style="width: 120px; height: 75px;" id="file" name="file">By File</button>
-        <button type="button" class="btn btn-default btn-lg active" style="width: 120px; height: 75px; margin-left: 2%;" id="zoom" name="zoom">By Zoom Id</button>
-=======
-        <button type="button" class="btn btn-default btn-lg active" style="width: 150px; height: 75px;" id="file" name="file">By File</button>
-        <button type="button" class="btn btn-default btn-lg active" style="width: 150px; height: 75px; margin-left: 5%;" id="zoom" name="zoom">Zoom ID</button>
->>>>>>> 346cde6e121cc22528c8c7830be553247224a8f9
+        <button type="button" class="btn btn-default btn-lg active" style="width: 120px; height: 75px; margin-left: 2%;" id="zoom" name="zoom">ZoomID</button>
       </div>
     </div>
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -84,7 +79,6 @@
                   </div>
               </div>
           </div>
-<<<<<<< HEAD
     
 
          </div>
@@ -92,25 +86,17 @@
          <div class="col-sm-6">
           <h3 style="margin-top: 20px;">To Do List</h2>
             <table class="table" id="todolist">
-=======
-          <h3 style="margin-top: 20px;">Task List</h2>
-            <table class="table table-bordered" id="todolist">
->>>>>>> 346cde6e121cc22528c8c7830be553247224a8f9
                 <tr>
                     <td style="font-size: large;">Name</td>
                     <td style="font-size: large;">Things to do</td>
                 </tr>
             </table>
-<<<<<<< HEAD
+
           </div>
 
             
-
-=======
     <div>
-      <h3>
-          Share/Send Email
-      </h3>
+      
       <form>
     <div class="form-group">
       <!-- <label for="exampleInputEmail1">Email address</label> -->
@@ -118,17 +104,18 @@
     </div>
     <button type="submit" class="btn btn-primary" onclick="sendMail()">Send Email</button>
     </form>
->>>>>>> 346cde6e121cc22528c8c7830be553247224a8f9
+
     </div>
   </div>
   <div>
-    <h3>
-        Send Schedule to the email address
-    </h3>
+    
     <form>
-  <div class="form-group">
-    <label for="exampleInputEmail1">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+  <div class="form-group" style="margin-top: 120px;">
+
+    <!-- <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email"> -->
+    <h3 style="margin: left 5px;">
+      Share/send emails 
+  </h3>
   </div>
   <button type="submit" class="btn btn-primary">Send Email</button>
   </form>
