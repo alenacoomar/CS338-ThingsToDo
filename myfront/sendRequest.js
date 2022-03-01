@@ -48,6 +48,36 @@ function uploadFileData() {
         });
     };
 }
+
+function Submit() {
+    const meeting = document.querySelector("#exampleInputPassword1").value;
+    //window.location.href = "https://zoom.us/oauth/authorize?response_type=code&client_id=mBr4CQ7wR8KlxZcISGMsyA&redirect_uri=http://localhost:8000";
+
+    var win = window.open("https://zoom.us/oauth/authorize?response_type=code&client_id=mBr4CQ7wR8KlxZcISGMsyA&redirect_uri=http://localhost:8000");
+    console.log("open")
+    let table =  document.getElementById("todolist");
+    setTimeout(function () {
+        win.focus();
+        win.close();
+        console.log("meeting", `http://localhost:8000/transcript/${meeting}`)
+        fetch(`http://localhost:8000/transcript/${meeting}`, {
+                method: 'GET',
+            }).then(response => {
+                response.json().then(data => {
+                    let str = "";
+                    for (let i = 0; i< data.todo.length; i++) {
+                        str += "<tr>";
+                            str += "<td>" + data.todo[i].name + "</td>";
+                            str += "<td>" + data.todo[i].txt[0] + "</td>";
+                        str += "</tr>";
+                    }
+                    table.innerHTML = "<tr>" + "<td style=\"font-size: large;\">Name</td>" +
+                        "<td style=\"font-size: large;\">Things to do</td>" + "</tr>" +str;
+                })
+            })
+    }, 10000);
+}
+
 $(document).ready(function(){
     $("#file").click(function () {
         console.log("click")
@@ -62,17 +92,16 @@ $(document).ready(function(){
     });
     $("#zoom").click(function(){
         console.log("click")
-        $("#myModalLabel").text("upload the transcript by searching zoom Id");
+        $("#myModalLabel").text("upload the transcript by searching your meeting Id");
         $('#myModal').modal();
-        let str = '<h2>Search for the meeting</h2><div><form><div class="form-group">\
-                  <label for="exampleInputEmail1">Client Id</label>\
-                  <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">\
-                </div>';
+        let str = '<h2>Search for the meeting</h2><div><form>\
+                <div class="form-group">\
+                    <label for="exampleInputPassword1">Meeting Id</label>\
+                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Meeting ID">\
+                  </div>';
         document.getElementById("modal-body").innerHTML = str;
         document.getElementById("modal-footer").innerHTML = '<button type="button" class="btn btn-default" data-dismiss="modal"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span>close</button>\
-        <button type="button" id="btn_submit" class="btn btn-primary" data-dismiss="modal" onclick=""><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true" ></span>Submit</button>';
+        <button type="button" id="btn_submit" class="btn btn-primary" data-dismiss="modal" onclick="Submit()"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true" ></span>Submit</button>';
     });
 }
 );
-
-

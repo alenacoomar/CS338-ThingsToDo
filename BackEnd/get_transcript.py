@@ -16,15 +16,16 @@ class Code():
         self.client_key = client_key
         self.code = None
         self.conn = None
+        self.conn2 = None
     def GetCode(self):
         """Gets the authorization code"""
         self.conn = http.client.HTTPSConnection("zoom.us")
-        self.conn.request("GET", "/oauth/authorize?response_type=code&client_id={client_id}&redirect_uri=localhost:8000".format(client_id=self.client_key))
-        """res = self.conn.getresponse()
+        self.conn.request("GET", "/oauth/authorize?response_type=code&client_id={client_id}&redirect_uri=http://localhost:8000".format(client_id=self.client_key))
+        res = self.conn.getresponse()
         print(res.read())
-        response = json.loads(res.read())
+        response = json.loads(res.read().decode("utf-8"))
         print(response)
-        return response"""
+        return response
 
 class Transcript():
     """Use the API token's key, secret, and code to get transcript file from cloud recording of meeting with id meeting_id."""
@@ -48,11 +49,14 @@ class Transcript():
         """Gets the transcript using the parameters the instance has access to."""
 
         self.conn = http.client.HTTPSConnection("zoom.us")
-        got_file = False
+        #got_file = False
+        content = None
         if None in [self.client_key, self.client_secret, self.code] and self.access_token is None:
             print("Zoom OAuth token needed to get transcript.")
-            print(self.code)
-            return got_file
+            return content
+
+        if self.code is None:
+            self.code = self._GetCode()
 
         if self.access_token is None:
             self.access_token = self._GetAccessToken()
@@ -63,7 +67,7 @@ class Transcript():
             print("Bad Access Token")
             if None in [self.client_key, self.client_secret, self.code]:
                 print("client_key, client_secret, and code needed to create access token.")
-                return got_file
+                return content
             self.access_token = self._GetAccessToken()
             download_url = self._GetDownloadUrl()
         
@@ -71,10 +75,18 @@ class Transcript():
             print("Meeting Not Found.")
         else:
             transcript = requests.get(download_url, allow_redirects=True)
-            open("{meeting_id}_audio_transcript.vtt".format(meeting_id=self.meeting_id), 'wb').write(transcript.content)
-            got_file = True
+            #open("{meeting_id}_audio_transcript.vtt".format(meeting_id=self.meeting_id), 'wb').write(transcript.content)
+            #got_file = True
+            content = transcript.content
+        
+        return content
 
-        return got_file
+    # def _GetCode(self):
+    #     #https://zoom.us/oauth/authorize?response_type=code&client_id=mBr4CQ7wR8KlxZcISGMsyA&redirect_uri=http://localhost:8000'
+    #     self.conn.request("GET", "/oauth/authorize?response_type=code&client_id=mBr4CQ7wR8KlxZcISGMsyA&redirect_uri=http://localhost:8000")
+    #     res = self.conn.getresponse()
+    #     response = json.loads(res.read().decode("utf-8"))
+    #     print(response)
 
     def _GetAccessToken(self):
         """Gets an access token using client_key, client_secret, and code."""
@@ -92,7 +104,6 @@ class Transcript():
         self.conn.request("POST", request_endpoint, headers=access_token_headers)
         res = self.conn.getresponse()
         response = json.loads(res.read().decode("utf-8"))
-        print(response)
 
         try:
             return response["access_token"]
@@ -108,17 +119,17 @@ class Transcript():
             'content-type': "application/json"
         }
         try:
-            request_endpoint = "/v2/users/me/recordings?from=2000-01-01"
+            request_endpoint = "/v2/users/me/recordings?from=2000-01-01&to=2022-02-05"
             self.conn.request("GET", request_endpoint, headers=get_meeting_headers)
             res = self.conn.getresponse()
             data = res.read().decode("utf-8")
             response = json.loads(data)
         except:
             print("Bad Response to access recordings.")
-            print(data)
         
         # Download the transcript if it exists
         download_url = None
+        print(response)
         for meeting in response["meetings"]:
             if "recording_files" not in meeting or meeting["id"] != self.meeting_id:
                 continue
