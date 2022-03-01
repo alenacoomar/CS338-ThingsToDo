@@ -48,13 +48,21 @@
       <h3>
           Share/Send Email
       </h3>
-      <form>
+    <form>
     <div class="form-group">
       <!-- <label for="exampleInputEmail1">Email address</label> -->
       <!-- <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email"> -->
     </div>
-    <button type="submit" class="btn btn-primary" onclick="sendMail()">Send Email</button>
+    <button type="submit" class="btn btn-primary" onclick="submitMail()">Send Email</button>
     </form>
+    <script>
+      function submitMail() {
+        email = document.getElementById('exampleInputEmail1').value;
+        tasks = "hello this is a test"
+        url = `mailto:${email}?subject=Tasks&body=${tasks}`;
+        window.open(url);
+}
+    </script>
     </div>
   </div>
 </div>
