@@ -37,17 +37,27 @@ function Submit() {
 
     var win = window.open("https://zoom.us/oauth/authorize?response_type=code&client_id=mBr4CQ7wR8KlxZcISGMsyA&redirect_uri=http://localhost:8000");
     console.log("open")
-
+    let table =  document.getElementById("todolist");
     setTimeout(function () {
         win.focus();
         win.close();
         console.log("meeting", `http://localhost:8000/transcript/${meeting}`)
         fetch(`http://localhost:8000/transcript/${meeting}`, {
                 method: 'GET',
-            }).then(res => {
-                console.log("rs", res)
+            }).then(response => {
+                response.json().then(data => {
+                    let str = "";
+                    for (let i = 0; i< data.todo.length; i++) {
+                        str += "<tr>";
+                            str += "<td>" + data.todo[i].name + "</td>";
+                            str += "<td>" + data.todo[i].txt[0] + "</td>";
+                        str += "</tr>";
+                    }
+                    table.innerHTML = "<tr>" + "<td style=\"font-size: large;\">Name</td>" +
+                        "<td style=\"font-size: large;\">Things to do</td>" + "</tr>" +str;
+                })
             })
-    }, 1000);
+    }, 10000);
 }
 
 $(document).ready(function(){

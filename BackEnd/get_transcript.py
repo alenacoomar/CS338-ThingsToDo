@@ -16,6 +16,7 @@ class Code():
         self.client_key = client_key
         self.code = None
         self.conn = None
+        self.conn2 = None
     def GetCode(self):
         """Gets the authorization code"""
         self.conn = http.client.HTTPSConnection("zoom.us")
@@ -118,7 +119,7 @@ class Transcript():
             'content-type': "application/json"
         }
         try:
-            request_endpoint = "/v2/users/me/recordings?from=2000-01-01"
+            request_endpoint = "/v2/users/me/recordings?from=2000-01-01&to=2022-02-05"
             self.conn.request("GET", request_endpoint, headers=get_meeting_headers)
             res = self.conn.getresponse()
             data = res.read().decode("utf-8")
@@ -128,6 +129,7 @@ class Transcript():
         
         # Download the transcript if it exists
         download_url = None
+        print(response)
         for meeting in response["meetings"]:
             if "recording_files" not in meeting or meeting["id"] != self.meeting_id:
                 continue

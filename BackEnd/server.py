@@ -32,10 +32,11 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
             self.wfile.write("{a}".format(a=self.path[7:]).encode("utf-8"))
             
         elif self.path.startswith('/transcript/'):
-            client_id = int(self.path[12:])
+            meeting_id = int(self.path[12:])
             code = authcode
             print("transcript code", code)
-            transcript = Transcript(client_id, client_key="mBr4CQ7wR8KlxZcISGMsyA",client_secret="533Kdl2aa0w2Kvbb9Z5QcIizWLn3VJWQ", code=code).GetTranscript()
+            print("meeting id", meeting_id)
+            transcript = Transcript(meeting_id, client_key="mBr4CQ7wR8KlxZcISGMsyA",client_secret="533Kdl2aa0w2Kvbb9Z5QcIizWLn3VJWQ", code=code).GetTranscript()
             if transcript == None:
                 self.send_response(404)
                 self.send_header("Access-Control-Allow-Origin", "*")
