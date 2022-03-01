@@ -32,13 +32,22 @@ function uploadFileData() {
 }
 
 function Submit() {
-    meeting = document.querySelector("#exampleInputPassword1").value;
-    //window.open(`http://localhost:8000/meetingid/${meeting}`, "_blank");
-    window.location.href = "https://zoom.us/oauth/authorize?response_type=code&client_id=mBr4CQ7wR8KlxZcISGMsyA&redirect_uri=http://localhost:8000";
-    fetch(`http://localhost:8000/transcript/${meeting}`)
-        .then(res => {
-            console.log(res)
-        })
+    const meeting = document.querySelector("#exampleInputPassword1").value;
+    //window.location.href = "https://zoom.us/oauth/authorize?response_type=code&client_id=mBr4CQ7wR8KlxZcISGMsyA&redirect_uri=http://localhost:8000";
+
+    var win = window.open("https://zoom.us/oauth/authorize?response_type=code&client_id=mBr4CQ7wR8KlxZcISGMsyA&redirect_uri=http://localhost:8000");
+    console.log("open")
+
+    setTimeout(function () {
+        win.focus();
+        win.close();
+        console.log("meeting", `http://localhost:8000/transcript/${meeting}`)
+        fetch(`http://localhost:8000/transcript/${meeting}`, {
+                method: 'GET',
+            }).then(res => {
+                console.log("rs", res)
+            })
+    }, 1000);
 }
 
 $(document).ready(function(){

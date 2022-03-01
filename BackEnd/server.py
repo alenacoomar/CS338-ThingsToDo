@@ -26,7 +26,7 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
         elif self.path.startswith('/?code='):
             self.headers.add_header("authcode", self.path[7:])
             authcode = self.path[7:]
-            print(authcode)
+            print("code", authcode)
             self.send_response(200)
             self.end_headers()
             self.wfile.write("{a}".format(a=self.path[7:]).encode("utf-8"))
@@ -34,9 +34,7 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
         elif self.path.startswith('/transcript/'):
             client_id = int(self.path[12:])
             code = authcode
-            while code == None:
-                code = authcode
-            
+            print("transcript code", code)
             transcript = Transcript(client_id, client_key="mBr4CQ7wR8KlxZcISGMsyA",client_secret="533Kdl2aa0w2Kvbb9Z5QcIizWLn3VJWQ", code=code).GetTranscript()
             if transcript == None:
                 self.send_response(404)
