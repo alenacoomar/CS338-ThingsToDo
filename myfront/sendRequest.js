@@ -2,7 +2,11 @@ let meetingID = ""
 let returnTasks = []
 
 function submitMail() {
-    const email = document.getElementById('exampleInputEmail1').value;
+    const email = "";
+    if (document.getElementById('exampleInputEmail1')) {
+        const email = document.getElementById('exampleInputEmail1').value;
+    }
+
     let tasks = ""
     Object.values(returnTasks).map((value) => {
         tasks += value[0] + ": " + value[1] + "%0D%0A"
@@ -11,6 +15,7 @@ function submitMail() {
     const url = `mailto:${email}?subject=${subject}&body=${tasks}`;
     window.open(url);
 }
+
 function uploadFileData() {
     let file = document.getElementById("customFile").files[0];
     const reader = new FileReader();
