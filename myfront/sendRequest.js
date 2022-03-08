@@ -27,6 +27,7 @@ function uploadFileData() {
         table.innerHTML = "<tr>" +
                 "<td style=\"font-size: large;\">Name</td>" +
                 "<td style=\"font-size: large;\">Things to do</td>" +
+                '<td style="font-size: large;">Finished?</td>'+
                 "</tr>" + "<td style=\"font-size: large;\" > loading... </td>";
         const rsp = fetch( "http://3.15.51.216:8000/", {
             method: 'POST',
@@ -38,12 +39,13 @@ function uploadFileData() {
                     str += "<tr>";
                         str += "<td>" + data.todo[i].name + "</td>";
                         str += "<td>" + data.todo[i].txt[0] + "</td>";
+                        str += '<td><input type="checkbox" name="name1" id = "name1" />&nbsp;</td>';
                     str += "</tr>";
 
                     returnTasks.push([data.todo[i].name, data.todo[i].txt[0]])
                 }
                 table.innerHTML = "<tr>" + "<td style=\"font-size: large;\">Name</td>" +
-                    "<td style=\"font-size: large;\">Things to do</td>" + "</tr>" +str;
+                    "<td style=\"font-size: large;\">Things to do</td>" +'<td style="font-size: large;">Finished?</td>'+ "</tr>" +str;
             })
         }).catch(err => {
             console.log(err);
@@ -71,10 +73,11 @@ function Submit() {
                         str += "<tr>";
                             str += "<td>" + data.todo[i].name + "</td>";
                             str += "<td>" + data.todo[i].txt[0] + "</td>";
+                            str += '<td><input type="checkbox" name="name1" id = "name1" />&nbsp;</td>';
                         str += "</tr>";
                     }
                     table.innerHTML = "<tr>" + "<td style=\"font-size: large;\">Name</td>" +
-                        "<td style=\"font-size: large;\">Things to do</td>" + "</tr>" +str;
+                    "<td style=\"font-size: large;\">Things to do</td>" +'<td style="font-size: large;">Finished?</td>'+ "</tr>" +str;
                 })
             })
     }, 10000);
