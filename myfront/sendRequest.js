@@ -2,17 +2,12 @@ let meetingID = ""
 let returnTasks = []
 
 function submitMail() {
-    const email = "";
-    if (document.getElementById('exampleInputEmail1')) {
-        const email = document.getElementById('exampleInputEmail1').value;
-    }
-
     let tasks = ""
     Object.values(returnTasks).map((value) => {
-        tasks += value[0] + ": " + value[1] + "%0D%0A"
+        tasks += value[0] + ": " + value[1] + "%0D%0A%0D%0A"
     })
     const subject = `Tasks for meeting ${meetingID}`
-    const url = `mailto:${email}?subject=${subject}&body=${tasks}`;
+    const url = `mailto:?subject=${subject}&body=${tasks}`;
     window.open(url);
 }
 
@@ -75,6 +70,8 @@ function Submit() {
                             str += "<td>" + data.todo[i].txt[0] + "</td>";
                             str += '<td><input type="checkbox" name="name1" id = "name1" />&nbsp;</td>';
                         str += "</tr>";
+
+                        returnTasks.push([data.todo[i].name, data.todo[i].txt[0]])
                     }
                     table.innerHTML = "<tr>" + "<td style=\"font-size: large;\">Name</td>" +
                     "<td style=\"font-size: large;\">Things to do</td>" +'<td style="font-size: large;">Finished?</td>'+ "</tr>" +str;
