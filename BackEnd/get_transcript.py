@@ -119,7 +119,7 @@ class Transcript():
             'content-type': "application/json"
         }
         try:
-            request_endpoint = "/v2/users/me/recordings?from=2000-01-01&to=2022-02-05"
+            request_endpoint = "/v2/users/me/recordings?from=2000-01-01"
             self.conn.request("GET", request_endpoint, headers=get_meeting_headers)
             res = self.conn.getresponse()
             data = res.read().decode("utf-8")
